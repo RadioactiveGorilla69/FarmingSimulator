@@ -1,9 +1,8 @@
 public class Crop {
-
 	private String cropName;
-
-	public Crop(String name) {
-		cropName = name;
+	private int price;
+	public Crop(String cropName, int price) {
+		this.cropName = cropName;
+		this.price = price;
 	}
-	
 }
