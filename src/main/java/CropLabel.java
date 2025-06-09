@@ -14,7 +14,7 @@ public class CropLabel extends JLabel {
 		setPreferredSize(new Dimension(50, 50));
 		setCropType(cropType);
 		try {
-			fieldImage = ImageIO.read(new File("resources/field.png"));
+			fieldImage = ImageIO.read(new File("src/main/resources/field.png"));
 			fieldImage = resizeImage(fieldImage, 50, 50);
 		} catch(Exception e) {
 			System.out.println("Error loading field image: " + e.getMessage());
@@ -23,22 +23,6 @@ public class CropLabel extends JLabel {
 
 	public void setCropType(String cropType) {
 		this.cropType = cropType;
-
-		if(cropType.toLowerCase().equals("field")) {
-			//System.out.println("hi");
-			cropImage = null;
-			repaint();
-			return;
-		}
-
-		try {
-			BufferedImage img = ImageIO.read(new File("resources/" + cropType.toLowerCase() + ".png"));
-			cropImage = resizeImage(img, 50, 50);
-		} catch(Exception e) {
-			System.out.println("Error loading crop image: " + e.getMessage());
-			cropImage = null;
-		}
-		repaint();
 	}
 
 	public String getCropType(){
@@ -64,7 +48,7 @@ public class CropLabel extends JLabel {
 		g2d.dispose();
 		return resized;
 	}
-	
+
 	public void setGrowthStage(double stage) {
 		if(cropType == null || cropType.equals("field")) {
 			cropImage = null;
@@ -73,7 +57,7 @@ public class CropLabel extends JLabel {
 		}
 		int visualStage = Math.min((int)(stage * 4), 3);
 		try {
-			BufferedImage img = ImageIO.read(new File("resources/" + cropType.toLowerCase() + "_stage" + visualStage + ".png"));
+			BufferedImage img = ImageIO.read(new File("src/main/resources/" + cropType.toLowerCase() + "_stage" + visualStage + ".png"));
 			cropImage = resizeImage(img, 50, 50);
 		} catch (Exception e) {
 			System.out.println("Error loading image for stage: " + e.getMessage());
